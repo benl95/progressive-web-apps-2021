@@ -1,6 +1,7 @@
+require('dotenv').config({ path: __dirname + '/config.env' });
 const express = require('express');
 const handlebars = require('express-handlebars');
-const path = require('path');
+const port = process.env.PORT;
 
 const app = express();
 
@@ -20,6 +21,6 @@ app.get('/', (req, res) => {
 	});
 });
 
-app.listen(3000, () => {
-	console.log('Server is starting at 3000');
+app.listen(port, () => {
+	console.log(`Server is starting at ${port}`);
 });
