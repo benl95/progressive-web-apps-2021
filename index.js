@@ -60,8 +60,6 @@ app.get('/callback', function (req, res) {
 				});
 
 			res.redirect('/');
-
-			return token;
 		},
 		(err) => {
 			res.status(err.code);
