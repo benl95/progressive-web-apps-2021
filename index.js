@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const spotifyWebApi = require('spotify-web-api-node');
 const hbs = require('express-handlebars');
-const port = 3000;
+const port = process.env.PORT;
 
 const api = new spotifyWebApi({
 	clientId: process.env.CLIENT_ID,
@@ -24,8 +24,8 @@ app.engine(
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-	res.render('home', {
-		title: 'Home',
+	res.render('login', {
+		title: 'Login to Spotify',
 	});
 });
 
@@ -65,7 +65,7 @@ app.get('/detail/:id', (req, res) => {
 			const items = tracksObj.items;
 
 			res.render('detail', {
-				title: 'Detail',
+				title: 'Playlists tracks',
 				trackItems: items,
 			});
 		})
@@ -91,7 +91,7 @@ app.get('/playlists', (req, res) => {
 			const items = playlistsObj.items;
 
 			res.render('playlists', {
-				title: 'Playlists',
+				title: 'Your playlists',
 				playlistItems: items,
 			});
 		})
