@@ -1,0 +1,11 @@
+<body>
+   <div id="tracks-column">
+      {{#each trackItems}}
+      <div id="track-row">
+         <h2>{{this.track.name}}</h2>
+         <p>{{this.track.artists.0.name}}</p>
+         <p>{{this.track.duration_ms}}</p>
+      </div>
+      {{/each}}
+   </div>
+</body>
