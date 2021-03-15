@@ -1,0 +1,8 @@
+<body>
+   {{#each playlistItems}}
+   <div id="item-container">
+      <h2>{{this.name}}</h2>
+      <p>van {{this.owner.display_name}}</p>
+   </div>
+   {{/each}}
+</body>
