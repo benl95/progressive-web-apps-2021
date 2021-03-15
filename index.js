@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const spotifyWebApi = require('spotify-web-api-node');
 const hbs = require('express-handlebars');
+const { authSpotifyApi } = require('./public/js/helpers/spotifyAuth.js');
+const app = express();
 const port = process.env.PORT;
 
 const api = new spotifyWebApi({
@@ -9,8 +11,6 @@ const api = new spotifyWebApi({
 	clientSecret: process.env.CLIENT_SECRET,
 	redirectUri: process.env.REDIRECT_URI,
 });
-
-const app = express();
 
 app.engine(
 	'hbs',
@@ -37,40 +37,17 @@ app.get('/login', (req, res) => {
 
 // Get token and refresh token from Spotify API and set them for future API requests
 app.get('/callback', (req, res) => {
-	const code = req.query.code;
-
-	api.authorizationCodeGrant(code).then(
-		(data) => {
-			const token = data.body['access_token'];
-			const refresh_token = data.body['refresh_token'];
-
-			api.setAccessToken(token);
-			api.setRefreshToken(refresh_token);
-
+	authSpotifyApi(req.query.code)
+		.then((tokens) => {
+			api.setAccessToken(tokens[0]);
+			api.setRefreshToken(tokens[1]);
+		})
+		.then(() => {
 			res.redirect('/playlists');
-		},
-		(err) => {
-			res.status(err.code);
-			res.send(err.message);
-		}
-	);
-});
-
-// Fetch playlist tracks based on @params id in url
-app.get('/detail/:id', (req, res) => {
-	api.getPlaylistTracks(req.params.id)
-		.then((data) => {
-			const dataToJson = JSON.stringify(data.body);
-			const tracksObj = JSON.parse(dataToJson);
-			const items = tracksObj.items;
-
-			res.render('detail', {
-				title: 'Playlists tracks',
-				trackItems: items,
-			});
 		})
 		.catch((error) => {
-			console.error(error);
+			res.status(error.code);
+			res.send(error.message);
 		});
 });
 
@@ -88,11 +65,29 @@ app.get('/playlists', (req, res) => {
 		.then((userPlaylists) => {
 			const dataToJson = JSON.stringify(userPlaylists.body);
 			const playlistsObj = JSON.parse(dataToJson);
-			const items = playlistsObj.items;
+			const playlistItems = playlistsObj.items;
 
 			res.render('playlists', {
 				title: 'Your playlists',
-				playlistItems: items,
+				data: playlistItems,
+			});
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+});
+
+// Fetch playlist tracks based on @params id in url
+app.get('/tracks/:id', (req, res) => {
+	api.getPlaylistTracks(req.params.id)
+		.then((data) => {
+			const dataToJson = JSON.stringify(data.body);
+			const tracksObj = JSON.parse(dataToJson);
+			const items = tracksObj.items;
+
+			res.render('tracks', {
+				title: 'Playlist tracks',
+				trackItems: items,
 			});
 		})
 		.catch((error) => {
