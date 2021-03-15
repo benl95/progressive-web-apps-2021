@@ -39,8 +39,8 @@ app.get('/login', (req, res) => {
 app.get('/callback', (req, res) => {
 	authSpotifyApi(req.query.code)
 		.then((tokens) => {
-			api.setAccessToken(tokens[0]);
-			api.setRefreshToken(tokens[1]);
+			api.setAccessToken(tokens.access_token);
+			api.setRefreshToken(tokens.refresh_token);
 		})
 		.then(() => {
 			res.redirect('/playlists');
