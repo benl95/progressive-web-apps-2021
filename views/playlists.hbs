@@ -1,9 +1,11 @@
 <body>
    {{#each playlistItems}}
-   <div id="item-container">
-      <img src="{{this.images.1.url}}">
+   <div id="playlist-item">
+      <a href="http://localhost:3000/detail/{{this.id}}">
+      <img src="{{this.images.0.url}}">
       <h2>{{this.name}}</h2>
       <p>van {{this.owner.display_name}}</p>
+      </a>
    </div>
    {{/each}}
 </body>
