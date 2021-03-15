@@ -28,6 +28,31 @@ app.get('/', (req, res) => {
 	});
 });
 
+app.get('/playlists', (req, res) => {
+	api.getMe()
+		.then(function (data) {
+			const id = data.body.id;
+			return id;
+		})
+		.then(function (id) {
+			return api.getUserPlaylists(id);
+		})
+		.then(function (data) {
+			const dataToJson = JSON.stringify(data.body);
+			const playlistsObj = JSON.parse(dataToJson);
+			const items = playlistsObj.items;
+			console.log(items);
+
+			res.render('playlists', {
+				title: 'Playlists',
+				playlistItems: items,
+			});
+		})
+		.catch(function (error) {
+			console.error(error);
+		});
+});
+
 app.get('/login', (req, res) => {
 	const scopes = ['user-read-email', 'user-read-private'];
 	res.redirect(api.createAuthorizeURL(scopes));
@@ -44,22 +69,7 @@ app.get('/callback', function (req, res) {
 			api.setAccessToken(token);
 			api.setRefreshToken(refresh_token);
 
-			api.getMe()
-				.then(function (data) {
-					const id = data.body.id;
-					return id;
-				})
-				.then(function (id) {
-					return api.getUserPlaylists(id);
-				})
-				.then(function (data) {
-					console.log(data.body);
-				})
-				.catch(function (error) {
-					console.error(error);
-				});
-
-			res.redirect('/');
+			res.redirect('/playlists');
 		},
 		(err) => {
 			res.status(err.code);
