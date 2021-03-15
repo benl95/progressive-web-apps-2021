@@ -7,7 +7,7 @@ const api = new spotifyWebApi({
 	redirectUri: process.env.REDIRECT_URI,
 });
 
-async function authSpotifyApi(code) {
+function authSpotifyApi(code) {
 	return api.authorizationCodeGrant(code).then((data) => {
 		const tokens = {
 			access_token: data.body['access_token'],
