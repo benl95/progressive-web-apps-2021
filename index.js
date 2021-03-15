@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const spotifyWebApi = require('spotify-web-api-node');
 const hbs = require('express-handlebars');
@@ -30,25 +31,24 @@ app.get('/', (req, res) => {
 
 app.get('/playlists', (req, res) => {
 	api.getMe()
-		.then(function (data) {
+		.then((data) => {
 			const id = data.body.id;
 			return id;
 		})
-		.then(function (id) {
+		.then((id) => {
 			return api.getUserPlaylists(id);
 		})
-		.then(function (data) {
+		.then((data) => {
 			const dataToJson = JSON.stringify(data.body);
 			const playlistsObj = JSON.parse(dataToJson);
 			const items = playlistsObj.items;
-			console.log(items);
 
 			res.render('playlists', {
 				title: 'Playlists',
 				playlistItems: items,
 			});
 		})
-		.catch(function (error) {
+		.catch((error) => {
 			console.error(error);
 		});
 });
@@ -58,7 +58,7 @@ app.get('/login', (req, res) => {
 	res.redirect(api.createAuthorizeURL(scopes));
 });
 
-app.get('/callback', function (req, res) {
+app.get('/callback', (req, res) => {
 	const code = req.query.code;
 
 	api.authorizationCodeGrant(code).then(
