@@ -5,9 +5,9 @@ const hbs = require('express-handlebars');
 const port = 3000;
 
 const api = new spotifyWebApi({
-	clientId: '5470641b38f34b889f84c88912b013a0',
-	clientSecret: '9e364847d4ca45c6b782ca346de3c51b',
-	redirectUri: 'http://localhost:3000/callback/',
+	clientId: process.env.CLIENT_ID,
+	clientSecret: process.env.CLIENT_SECRET,
+	redirectUri: process.env.REDIRECT_URI,
 });
 
 const app = express();
@@ -29,52 +29,13 @@ app.get('/', (req, res) => {
 	});
 });
 
-app.get('/detail/:id', (req, res) => {
-	api.getPlaylistTracks(req.params.id)
-		.then((data) => {
-			const dataToJson = JSON.stringify(data.body);
-			const tracksObj = JSON.parse(dataToJson);
-			const items = tracksObj.items;
-
-			res.render('detail', {
-				title: 'Detail',
-				trackItems: items,
-			});
-		})
-		.catch((error) => {
-			console.error(error);
-		});
-});
-
-app.get('/playlists', (req, res) => {
-	api.getMe()
-		.then((data) => {
-			const id = data.body.id;
-			return id;
-		})
-		.then((id) => {
-			return api.getUserPlaylists(id);
-		})
-		.then((data) => {
-			const dataToJson = JSON.stringify(data.body);
-			const playlistsObj = JSON.parse(dataToJson);
-			const items = playlistsObj.items;
-
-			res.render('playlists', {
-				title: 'Playlists',
-				playlistItems: items,
-			});
-		})
-		.catch((error) => {
-			console.error(error);
-		});
-});
-
+// Redirect to Spotify login page for authenthication
 app.get('/login', (req, res) => {
 	const scopes = ['user-read-email', 'user-read-private'];
 	res.redirect(api.createAuthorizeURL(scopes));
 });
 
+// Get token and refresh token from Spotify API and set them for future API requests
 app.get('/callback', (req, res) => {
 	const code = req.query.code;
 
@@ -93,6 +54,50 @@ app.get('/callback', (req, res) => {
 			res.send(err.message);
 		}
 	);
+});
+
+// Fetch playlist tracks based on @params id in url
+app.get('/detail/:id', (req, res) => {
+	api.getPlaylistTracks(req.params.id)
+		.then((data) => {
+			const dataToJson = JSON.stringify(data.body);
+			const tracksObj = JSON.parse(dataToJson);
+			const items = tracksObj.items;
+
+			res.render('detail', {
+				title: 'Detail',
+				trackItems: items,
+			});
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+});
+
+// Fetch playlists of user
+app.get('/playlists', (req, res) => {
+	api.getMe()
+		.then((data) => {
+			const id = data.body.id;
+			return id;
+		})
+		.then((id) => {
+			const userPlaylists = api.getUserPlaylists(id);
+			return userPlaylists;
+		})
+		.then((userPlaylists) => {
+			const dataToJson = JSON.stringify(userPlaylists.body);
+			const playlistsObj = JSON.parse(dataToJson);
+			const items = playlistsObj.items;
+
+			res.render('playlists', {
+				title: 'Playlists',
+				playlistItems: items,
+			});
+		})
+		.catch((error) => {
+			console.error(error);
+		});
 });
 
 app.listen(port, () => {
