@@ -1,6 +1,7 @@
 <body>
    {{#each playlistItems}}
    <div id="item-container">
+      <img src="{{this.images.1.url}}">
       <h2>{{this.name}}</h2>
       <p>van {{this.owner.display_name}}</p>
    </div>
