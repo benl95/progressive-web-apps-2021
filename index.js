@@ -29,6 +29,23 @@ app.get('/', (req, res) => {
 	});
 });
 
+app.get('/detail/:id', (req, res) => {
+	api.getPlaylistTracks(req.params.id)
+		.then((data) => {
+			const dataToJson = JSON.stringify(data.body);
+			const tracksObj = JSON.parse(dataToJson);
+			const items = tracksObj.items;
+
+			res.render('detail', {
+				title: 'Detail',
+				trackItems: items,
+			});
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+});
+
 app.get('/playlists', (req, res) => {
 	api.getMe()
 		.then((data) => {
