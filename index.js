@@ -7,6 +7,7 @@ const { scopes } = require('./public/js/helpers/fetchData');
 const { transformData } = require('./public/js/data/transformData');
 const app = express();
 const port = process.env.PORT;
+const path = require('path');
 
 const api = new spotifyWebApi({
 	clientId: process.env.CLIENT_ID,
@@ -24,6 +25,8 @@ app.engine(
 );
 
 app.set('view engine', 'hbs');
+
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', (req, res) => {
 	res.render('login', {
