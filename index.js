@@ -3,6 +3,8 @@ const express = require('express');
 const spotifyWebApi = require('spotify-web-api-node');
 const hbs = require('express-handlebars');
 const { authSpotifyApi } = require('./public/js/helpers/spotifyAuth.js');
+const { scopes } = require('./public/js/helpers/fetchData');
+const { transformData } = require('./public/js/data/transformData');
 const app = express();
 const port = process.env.PORT;
 
@@ -31,11 +33,9 @@ app.get('/', (req, res) => {
 
 // Redirect to Spotify login page for authenthication
 app.get('/login', (req, res) => {
-	const scopes = ['user-read-email', 'user-read-private'];
-	res.redirect(api.createAuthorizeURL(scopes));
+	res.redirect(api.createAuthorizeURL(scopes()));
 });
 
-// Get token and refresh token from Spotify API and set them for future API requests
 app.get('/callback', (req, res) => {
 	authSpotifyApi(req.query.code)
 		.then((tokens) => {
@@ -63,9 +63,7 @@ app.get('/playlists', (req, res) => {
 			return userPlaylists;
 		})
 		.then((userPlaylists) => {
-			const dataToJson = JSON.stringify(userPlaylists.body);
-			const playlistsObj = JSON.parse(dataToJson);
-			const playlistItems = playlistsObj.items;
+			const playlistItems = transformData(userPlaylists.body);
 
 			res.render('playlists', {
 				title: 'Your playlists',
