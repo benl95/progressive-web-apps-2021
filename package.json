@@ -6,7 +6,9 @@
 	"scripts": {
 		"start": "node index",
 		"dev": "nodemon index",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prebuild:css": "rimraf \"public/css\"",
+		"build:css": "node ./scripts/build-css.js"
 	},
 	"repository": {
 		"type": "git",
@@ -27,7 +29,12 @@
 	"homepage": "https://github.com/benl95/progressive-web-apps-2021#readme",
 	"devDependencies": {
 		"dotenv": "^8.2.0",
-		"nodemon": "^2.0.7"
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^7.0.1",
+		"gulp-clean-css": "^4.3.0",
+		"gulp-concat": "^2.6.1",
+		"nodemon": "^2.0.7",
+		"rimraf": "^3.0.2"
 	},
 	"dependencies": {
 		"express": "^4.17.1",
