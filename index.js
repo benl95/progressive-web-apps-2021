@@ -79,13 +79,11 @@ app.get('/playlists', (req, res) => {
 app.get('/tracks/:id', (req, res) => {
 	api.getPlaylistTracks(req.params.id)
 		.then((data) => {
-			const dataToJson = JSON.stringify(data.body);
-			const tracksObj = JSON.parse(dataToJson);
-			const items = tracksObj.items;
+			const trackItems = transformData(data.body);
 
 			res.render('tracks', {
 				title: 'Playlist tracks',
-				trackItems: items,
+				data: trackItems,
 			});
 		})
 		.catch((error) => {
