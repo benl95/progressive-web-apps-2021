@@ -3,11 +3,13 @@ const express = require('express');
 const spotifyWebApi = require('spotify-web-api-node');
 const hbs = require('express-handlebars');
 const { authSpotifyApi } = require('./public/js/helpers/spotifyAuth.js');
-const { scopes } = require('./public/js/helpers/fetchData');
 const { transformData } = require('./public/js/data/transformData');
 const app = express();
 const port = process.env.PORT;
 const path = require('path');
+
+const login = require('./controller/routes/login');
+const auth = require('./controller/routes/auth');
 
 const api = new spotifyWebApi({
 	clientId: process.env.CLIENT_ID,
@@ -15,29 +17,19 @@ const api = new spotifyWebApi({
 	redirectUri: process.env.REDIRECT_URI,
 });
 
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/controller/views');
 app.engine(
 	'hbs',
 	hbs({
 		extname: 'hbs',
 		defaultLayout: 'main',
-		layoutsDir: __dirname + '/views/layouts',
 	})
 );
 
-app.set('view engine', 'hbs');
-
-app.use(express.static(path.join(__dirname, '/public')));
-
-app.get('/', (req, res) => {
-	res.render('login', {
-		title: 'Login to Spotify',
-	});
-});
-
-// Redirect to Spotify login page for authenthication
-app.get('/login', (req, res) => {
-	res.redirect(api.createAuthorizeURL(scopes()));
-});
+app.use(express.static(path.join(__dirname, '/public')))
+	.use('/', login)
+	.use('/login', auth);
 
 app.get('/callback', (req, res) => {
 	authSpotifyApi(req.query.code)
