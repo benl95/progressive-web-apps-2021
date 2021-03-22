@@ -30,8 +30,6 @@ router.get('/playlists', (req, res) => {
 			res.render('playlists', {
 				title: 'playlists',
 				data: transformPlaylists,
-				access_token: tokens.access_token,
-				refresh_token: tokens.refresh_token,
 			});
 		})
 		.catch((error) => {
