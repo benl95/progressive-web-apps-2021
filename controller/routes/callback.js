@@ -8,7 +8,7 @@ const api = new spotifyWebApi({
 	redirectUri: process.env.REDIRECT_URI,
 });
 
-router.get('/', (req, res) => {
+router.get('/callback', (req, res) => {
 	reqTokens(req.query.code)
 		.then((tokens) => {
 			api.setAccessToken(tokens.access_token);

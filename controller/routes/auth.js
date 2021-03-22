@@ -7,7 +7,7 @@ const api = new spotifyWebApi({
 	redirectUri: process.env.REDIRECT_URI,
 });
 
-router.get('/', (req, res) => {
+router.get('/login', (req, res) => {
 	const scopes = ['user-read-email', 'user-read-private'];
 	res.redirect(api.createAuthorizeURL(scopes));
 });

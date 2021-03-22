@@ -10,7 +10,7 @@ const api = new spotifyWebApi({
 	redirectUri: process.env.REDIRECT_URI,
 });
 
-router.get('/', (req, res) => {
+router.get('/playlists', (req, res) => {
 	const tokens = {
 		access_token: req.session.access_token,
 		refresh_token: req.session.refresh_token,
