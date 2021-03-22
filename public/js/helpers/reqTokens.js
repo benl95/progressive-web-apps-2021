@@ -16,7 +16,7 @@ async function reqTokens(code) {
 		refresh_token: data.body['refresh_token'],
 	};
 
-	return Promise.resolve(tokens);
+	return tokens;
 }
 
 module.exports = { reqTokens };

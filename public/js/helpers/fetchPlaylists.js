@@ -1,11 +1,6 @@
-require('dotenv').config();
 const spotifyWebApi = require('spotify-web-api-node');
 
-const api = new spotifyWebApi({
-	clientId: process.env.CLIENT_ID,
-	clientSecret: process.env.CLIENT_SECRET,
-	redirectUri: process.env.REDIRECT_URI,
-});
+const api = new spotifyWebApi();
 
 async function fetchPlaylists(token, id) {
 	api.setAccessToken(token.access_token);
@@ -16,7 +11,7 @@ async function fetchPlaylists(token, id) {
 	const toJson = JSON.stringify(data);
 	const toObj = JSON.parse(toJson);
 
-	return await toObj.body;
+	return toObj.body;
 }
 
 module.exports = { fetchPlaylists };
