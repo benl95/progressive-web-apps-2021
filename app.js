@@ -5,6 +5,7 @@ const session = require('express-session');
 const app = express();
 const port = process.env.PORT;
 const path = require('path');
+const compression = require('compression');
 
 const router = require('./controller/routes/router');
 
@@ -19,6 +20,7 @@ app.set('view engine', 'hbs')
 	);
 
 app.use(express.static(path.join(__dirname, '/public')))
+	.use(compression())
 	.use(
 		session({
 			secret: 'secret-key',
