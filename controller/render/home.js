@@ -1,6 +1,6 @@
-const { transformData } = require('../../public/js/data/transformData');
-const { fetchId } = require('../../public/js/helpers/fetchID');
-const { fetchPlaylists } = require('../../public/js/helpers/fetchPlaylists');
+const { transformData } = require('../../data/utils/transformData');
+const { fetchId } = require('../../data/helpers/fetchID');
+const { fetchPlaylists } = require('../../data/helpers/fetchPlaylists');
 
 const home = (req, res) => {
 	const tokens = {

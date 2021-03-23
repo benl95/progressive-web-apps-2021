@@ -1,5 +1,5 @@
-const { fetchTracks } = require('../../public/js/helpers/fetchTracks');
-const { transformData } = require('../../public/js/data/transformData');
+const { fetchTracks } = require('../../data/helpers/fetchTracks');
+const { transformData } = require('../../data/utils/transformData');
 
 const detail = (req, res) => {
 	const tokens = {

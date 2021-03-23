@@ -1,5 +1,4 @@
-require('dotenv').config();
-const { reqTokens } = require('../../public/js/helpers/reqTokens');
+const { reqTokens } = require('../../data/helpers/reqTokens');
 
 const callback = (req, res) => {
 	reqTokens(req.query.code)
