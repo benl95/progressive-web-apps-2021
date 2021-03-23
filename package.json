@@ -8,7 +8,9 @@
 		"dev": "nodemon app",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"prebuild:css": "rimraf \"public/css\"",
-		"build:css": "node ./scripts/build-css.js"
+		"prebuild:js": "rimraf \"public/js\"",
+		"build:css": "node ./scripts/build-css.js",
+		"build:js": "node ./scripts/build-js.js"
 	},
 	"repository": {
 		"type": "git",
@@ -37,9 +39,11 @@
 		"rimraf": "^3.0.2"
 	},
 	"dependencies": {
+		"compression": "^1.7.4",
 		"express": "^4.17.1",
 		"express-handlebars": "^5.2.1",
 		"express-session": "^1.17.1",
+		"gulp-uglify-es": "^2.0.0",
 		"spotify-web-api-node": "^5.0.2"
 	}
 }
