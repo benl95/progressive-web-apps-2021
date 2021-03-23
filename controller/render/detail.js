@@ -2,12 +2,12 @@ const { fetchTracks } = require('../../data/helpers/fetchTracks');
 const { transformData } = require('../../data/utils/transformData');
 
 const detail = (req, res) => {
-	const tokens = {
+	const token = {
 		access_token: req.session.access_token,
 		refresh_token: req.session.refresh_token,
 	};
 
-	fetchTracks(req.params.id, tokens)
+	fetchTracks(req.params.id, token)
 		.then((tracks) => {
 			let transformTracks = transformData(tracks);
 			return transformTracks;
@@ -20,6 +20,11 @@ const detail = (req, res) => {
 		})
 		.catch((error) => {
 			console.log(error);
+			if (error) {
+				res.render('error', {
+					title: '404, Page Not Found',
+				});
+			}
 		});
 };
 
