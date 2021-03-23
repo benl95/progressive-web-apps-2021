@@ -7,6 +7,7 @@ const { authentication } = require('../render/authenthication');
 const { callback } = require('../render/callback');
 const { home } = require('../render/home');
 const { detail } = require('../render/detail');
+const { error } = require('../render/error');
 
 // Set GET routes
 router
@@ -14,7 +15,8 @@ router
 	.get('/login', authentication)
 	.get('/callback', callback)
 	.get('/home', home)
-	.get('/detail/:id', detail);
+	.get('/detail/:id', detail)
+	.get('/*', error);
 
 // Export router module
 module.exports = router;
