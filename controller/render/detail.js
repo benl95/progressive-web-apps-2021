@@ -1,8 +1,7 @@
-const router = require('express').Router();
 const { fetchTracks } = require('../../public/js/helpers/fetchTracks');
 const { transformData } = require('../../public/js/data/transformData');
 
-router.get('/tracks/:id', (req, res) => {
+const detail = (req, res) => {
 	const tokens = {
 		access_token: req.session.access_token,
 		refresh_token: req.session.refresh_token,
@@ -22,6 +21,6 @@ router.get('/tracks/:id', (req, res) => {
 		.catch((error) => {
 			console.log(error);
 		});
-});
+};
 
-module.exports = router;
+module.exports = { detail };

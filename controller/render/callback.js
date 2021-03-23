@@ -1,7 +1,7 @@
-const router = require('express').Router();
+require('dotenv').config();
 const { reqTokens } = require('../../public/js/helpers/reqTokens');
 
-router.get('/callback', (req, res) => {
+const callback = (req, res) => {
 	reqTokens(req.query.code)
 		.then((tokens) => {
 			req.session.access_token = tokens.access_token;
@@ -9,11 +9,11 @@ router.get('/callback', (req, res) => {
 			req.session.save();
 		})
 		.then(() => {
-			res.redirect('/playlists');
+			res.redirect('/home');
 		})
 		.catch((error) => {
 			console.log(error);
 		});
-});
+};
 
-module.exports = router;
+module.exports = { callback };

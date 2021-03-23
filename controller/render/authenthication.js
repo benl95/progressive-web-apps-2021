@@ -1,4 +1,4 @@
-const router = require('express').Router();
+require('dotenv').config();
 const spotifyWebApi = require('spotify-web-api-node');
 
 const api = new spotifyWebApi({
@@ -7,9 +7,9 @@ const api = new spotifyWebApi({
 	redirectUri: process.env.REDIRECT_URI,
 });
 
-router.get('/login', (req, res) => {
+const authentication = (req, res) => {
 	const scopes = ['user-read-email', 'user-read-private'];
 	res.redirect(api.createAuthorizeURL(scopes));
-});
+};
 
-module.exports = router;
+module.exports = { authentication };
