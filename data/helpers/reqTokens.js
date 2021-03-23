@@ -14,6 +14,7 @@ async function reqTokens(code) {
 	const tokens = {
 		access_token: data.body['access_token'],
 		refresh_token: data.body['refresh_token'],
+		expires_in: data.body['expires_in'],
 	};
 
 	return tokens;

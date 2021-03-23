@@ -29,6 +29,7 @@ app.use(express.static(path.join(__dirname, '/public')))
 			cookie: {
 				secure: 'auto',
 			},
+			maxAge: (3600 / 2) * 1000,
 		})
 	)
 	.use(router);
