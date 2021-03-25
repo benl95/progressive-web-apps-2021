@@ -19,7 +19,7 @@ self.addEventListener('install', (e) => {
 			.open(cacheName)
 			.then((cache) => {
 				console.log('Service Worker: Caching Files');
-				cache.addAll(cacheAssets);
+				return cache.addAll(cacheAssets);
 			})
 			.then(() => self.skipWaiting())
 	);
