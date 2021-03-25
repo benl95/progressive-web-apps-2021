@@ -3,7 +3,6 @@ const express = require('express');
 const hbs = require('express-handlebars');
 const session = require('express-session');
 const app = express();
-const port = process.env.PORT;
 const path = require('path');
 const compression = require('compression');
 
@@ -34,6 +33,6 @@ app.use(express.static(path.join(__dirname, '/public')))
 	)
 	.use(router);
 
-app.listen(port, () => {
-	console.log(`Listening on port ${port}`);
+app.listen(process.env.PORT, () => {
+	console.log(`Listening on port ${process.env.PORT}`);
 });
