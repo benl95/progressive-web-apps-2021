@@ -32,3 +32,8 @@ a {
 	font-family: var(--font-size);
 	text-decoration: none;
 }
+
+img {
+	width: 20em;
+	height: 20em;
+}
