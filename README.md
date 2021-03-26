@@ -32,9 +32,9 @@ your own for free.
 > callback URL Create an .env in the root
 
 ```
-CLIENT_SECRET = 'client-secret-here';
-ClIENT_ID = 'client-id-here';
-REDIRECT_URI = 'callback-uri-here';
+CLIENT_SECRET='client-secret-here';
+ClIENT_ID='client-id-here';
+REDIRECT_URI='callback-uri-here';
 ```
 
 To run the project locally Node.js is required
