@@ -31,8 +31,10 @@ your own for free.
 > Create an app Copy the Client ID, Client Secret, Redirect URI and register a
 > callback URL Create an .env in the root
 
-```js
-CLIENT_SECRET='client-secret-here' ClIENT_ID='client-id-here' REDIRECT_URI='callback-uri-here'
+```
+CLIENT_SECRET = 'client-secret-here';
+ClIENT_ID = 'client-id-here';
+REDIRECT_URI = 'callback-uri-here';
 ```
 
 To run the project locally Node.js is required
