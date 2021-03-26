@@ -1,54 +1,69 @@
-# Progressive Web Apps @cmda-minor-web · 20-21
+# Spotify PWA
 
-In this course we will convert the client side web application previously made Web App From Scratch into a server side rendered application. We also add functionalities based on the Service Worker and turn the application into a Progressive Web App. Ultimately we are going to implement a series of optimisations to improve the performance of the application.  
+### Progressive Web Apps @cmda-minor-web · 20-21
+
+This is a simple application that is made using the Spotify API. The application
+retrieves the playlist data of a user. User will be able to view their playlists
+on the homepage and playlist tracks on a detail page.
 
 ## Learning goals
-- _You understand the difference between client side and server side rendering and you can apply server side rendering
-in your application_
-- _You understand how a Service Worker works and you can implement it in your application._
-- _You understand how the critical render path works and how you can optimize it for a better runtime and / or perceived performance._
+
+-  _You understand the difference between client side and server side rendering
+   and you can apply server side rendering in your application_
+-  _You understand how a Service Worker works and you can implement it in your
+   application._
+-  _You understand how the critical render path works and how you can optimize
+   it for a better runtime and / or perceived performance._
 
 [Rubric with learning goals](https://icthva.sharepoint.com/:x:/r/sites/FDMCI_EDU__CMD20_21_Minor_Web_5i7j73jt/_layouts/15/Doc.aspx?sourcedoc=%7B276F53A7-2531-4006-8AD2-08C9A82D3A11%7D&file=PWA%202021%20Rubric.xlsx&action=edit&mobileredirect=true&wdPreviousSession=92686bea-446f-40e3-9303-33fa3f832b82&wdOrigin=TEAMS-ELECTRON.teams.undefined)
 
-## Program
+## Installation
 
-### Week 1 - Server Side Rendering 📡
+1. Navigate to desired directory `cd <directory>`
+2. Clone the repo locally
+   `git clone https://github.com/benl95/progressive-web-apps-2021.git`
 
-Goal: Render web pages server side
+For security reasons, the spotify key has not been included, feel free to create
+your own for free.
 
-[Exercises](https://github.com/cmda-minor-web/progressive-web-apps-2021/blob/master/course/week-1.md)    
-[Server Side Rendering - slides Declan Rek](https://github.com/cmda-minor-web/progressive-web-apps-1920/blob/master/course/cmd-2021-server-side-rendering.pdf)  
+[Spotify Developer Dashboard](https://developer.spotify.com/dashboard/applications)
 
+> Create an app Copy the Client ID, Client Secret, Redirect URI and register a
+> callback URL Create an .env in the root
 
-### Week 2 - Progressive Web App 🚀
+```js
+CLIENT_SECRET='client-secret-here' ClIENT_ID='client-id-here' REDIRECT_URI='callback-uri-here'
+```
 
-Goals: Convert application to a Progressive Web App
+To run the project locally Node.js is required
 
-[Exercises](https://github.com/cmda-minor-web/progressive-web-apps-2021/blob/master/course/week-2.md)  
-[Progressive Web Apps - slides Declan Rek](https://github.com/cmda-minor-web/progressive-web-apps-1920/blob/master/course/cmd-2020-progressive-web-apps.pdf)
+```
+// Install the dependencies
+npm i
 
+// Run a local server
+npm run
 
-### Week 3 - Critical Rendering Path 📉 
+```
 
-Doel: Optimize the Critical Rendering Path   
-[Exercises](https://github.com/cmda-minor-web/progressive-web-apps-2021/blob/master/course/week-3.md)  
-[Critical Rendering Path - slides Declan Rek](https://github.com/cmda-minor-web/progressive-web-apps-1920/blob/master/course/cmd-2020-critical-rendering-path.pdf)
+## Features
 
+-  User can view their playlists
+-  User can view the tracks of a playlists
 
-<!-- Add a link to your live demo in Github Pages 🌐-->
+## External data
 
-<!-- ☝️ replace this description with a description of your own work -->
+This project will use the
+[Spotify API](https://developer.spotify.com/documentation/web-api/) to retrieve
+playlists data of the current authenthicated user.
 
-<!-- Add a nice image here at the end of the week, showing off your shiny frontend 📸 -->
+There are four ways of obtaining authorization:
 
-<!-- Maybe a table of contents here? 📚 -->
+1. [Authorization Code Flow](https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow)
+2. [Authorization Code Flow with PKCE](https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow-with-proof-key-for-code-exchange-pkce)
+3. [Client Credentials Flow](https://developer.spotify.com/documentation/general/guides/authorization-guide/#client-credentials-flow)
+4. [Implicit Grant](https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow)
 
-<!-- How about a section that describes how to install this project? 🤓 -->
+## License
 
-<!-- ...but how does one use this project? What are its features 🤔 -->
-
-<!-- What external data source is featured in your project and what are its properties 🌠 -->
-
-<!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
-
-<!-- How about a license here? 📜 (or is it a licence?) 🤷 -->
+MIT
