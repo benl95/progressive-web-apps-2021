@@ -4,6 +4,6 @@ const uglify = require('gulp-uglify-es').default;
 
 return gulp
 	.src(['./src/js/*.js'])
-	.pipe(concat('bundle.min.js'))
+	.pipe(concat('bundle.js'))
 	.pipe(uglify({ mangle: false }))
 	.pipe(gulp.dest('./public/js'));
