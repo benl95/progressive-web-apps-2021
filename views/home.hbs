@@ -1,0 +1,11 @@
+
+   <section>
+      {{#each data}}
+      <article>
+         <a href="/detail/{{this.playlist.id}}">
+            <img src="{{this.playlist.img}}" alt="Playlist cover">
+            <h2>{{this.playlist.name}}</h2>
+         </a>
+      </article>
+      {{/each}}
+   </section>

@@ -2,14 +2,21 @@ require('dotenv').config();
 const express = require('express');
 const hbs = require('express-handlebars');
 const session = require('express-session');
-const app = express();
 const path = require('path');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const compression = require('compression');
 
-const router = require('./controller/routes/router');
+const login = require('./routes/pages/login');
+const redirect = require('./routes/pages/redirect');
+const callback = require('./routes/pages/callback');
+const home = require('./routes/pages/home');
+const detail = require('./routes/pages/detail');
+
+const app = express();
 
 app.set('view engine', 'hbs')
-	.set('views', __dirname + '/controller/views')
+	.set('views', __dirname + '/views')
 	.engine(
 		'hbs',
 		hbs({
@@ -20,6 +27,9 @@ app.set('view engine', 'hbs')
 
 app.use(express.static(path.join(__dirname, '/public')))
 	.use(compression())
+	.use(cors())
+	.use(cookieParser())
+	.use(express.urlencoded({ extended: true }))
 	.use(
 		session({
 			secret: 'secret-key',
@@ -28,10 +38,13 @@ app.use(express.static(path.join(__dirname, '/public')))
 			cookie: {
 				secure: 'auto',
 			},
-			maxAge: (3600 / 2) * 1000,
 		})
 	)
-	.use(router);
+	.use(login)
+	.use(redirect)
+	.use(callback)
+	.use(home)
+	.use(detail);
 
 app.listen(process.env.PORT, () => {
 	console.log(`Listening on port ${process.env.PORT}`);
