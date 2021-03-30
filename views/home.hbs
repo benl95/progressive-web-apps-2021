@@ -2,7 +2,11 @@
       {{#each data}}
       <article>
          <a href="/detail/{{this.playlist.id}}">
-            <img src="{{this.playlist.img}}" alt="Playlist cover">
+         <picture>
+            <source media="(min-width: 768px)" srcset="{{this.playlist.largeImg}}" />
+            <source media="(min-width: 320px)" srcset="{{this.playlist.smallImg}}" />
+            <img src="{{this.playlist}}" alt="Playlist cover" loading="lazy">
+         </picture>
             <h2>{{this.playlist.name}}</h2>
          </a>
       </article>

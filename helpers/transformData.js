@@ -8,7 +8,8 @@ function transformPlaylistData(data) {
 			playlist: {
 				name: val.name,
 				id: val.id,
-				img: val.images[0].url,
+				smallImg: val.images[1].url,
+				largeImg: val.images[0].url,
 				owner: val.owner.display_name,
 			},
 		};
