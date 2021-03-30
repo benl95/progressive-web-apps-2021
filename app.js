@@ -12,6 +12,7 @@ const redirect = require('./routes/pages/redirect');
 const callback = require('./routes/pages/callback');
 const home = require('./routes/pages/home');
 const detail = require('./routes/pages/detail');
+const offline = require('./routes/pages/offline');
 
 const app = express();
 
@@ -44,7 +45,8 @@ app.use(express.static(path.join(__dirname, '/public')))
 	.use(redirect)
 	.use(callback)
 	.use(home)
-	.use(detail);
+	.use(detail)
+	.use(offline);
 
 app.listen(process.env.PORT, () => {
 	console.log(`Listening on port ${process.env.PORT}`);
