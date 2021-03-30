@@ -53,3 +53,8 @@ a {
 p {
 	color: var(--white);
 }
+
+h1 {
+	color: var(--white);
+	margin: 1em 0 1em 0;
+}
