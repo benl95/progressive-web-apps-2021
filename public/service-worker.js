@@ -1,6 +1,12 @@
 const cacheName = 'v1';
 
-const cacheAssets = ['/css/index.css', '/js/bundle.js', '/', '/manifest.json'];
+const cacheAssets = [
+	'/css/index.css',
+	'/js/bundle.js',
+	'/manifest.json',
+	'/detail',
+	'/home',
+];
 
 // Call Install Event
 self.addEventListener('install', e => {
@@ -14,6 +20,7 @@ self.addEventListener('install', e => {
 				cache.addAll(cacheAssets);
 			})
 			.then(() => self.skipWaiting())
+			.catch(err => console.log(err))
 	);
 });
 

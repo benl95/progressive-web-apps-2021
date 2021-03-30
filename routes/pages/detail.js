@@ -14,7 +14,6 @@ router.get('/detail/:id', (req, res) => {
 		})
 		.then(response => {
 			const data = response.data;
-			console.log(data.items);
 			const tracksData = transformTracksData(data.items);
 			return tracksData;
 		})
