@@ -23,7 +23,7 @@ router.get('/detail/:id', (req, res) => {
 				data: tracksData,
 			});
 		})
-		.catch(error => console.log(error));
+		.catch(err => console.log(err));
 });
 
 module.exports = router;

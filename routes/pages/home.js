@@ -21,7 +21,7 @@ router.get('/home', (req, res) => {
 				data: playlistData,
 			});
 		})
-		.catch(error => console.log(error));
+		.catch(err => console.log(err));
 });
 
 module.exports = router;
