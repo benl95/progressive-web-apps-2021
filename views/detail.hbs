@@ -1,12 +1,15 @@
 
-   <section>
-      <section>
-         {{#each data}}
-         <div>
+<main>
+   <section class="tracks-container">
+      {{#each data}}
+      <div class="horizontal-container">
+         <div class="vertical-container">
             <h2>{{this.track.name}}</h2>
             <p>{{this.track.artist}}</p>
-            <p>{{this.track.duration}}</p>
          </div>
-         {{/each}}
-      </section>
+         <p class="time">{{this.track.duration}}</p>
+      </div>
+      {{/each}}
    </section>
+</main>
+

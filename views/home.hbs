@@ -1,6 +1,8 @@
-   <section>
+<main>
+   <section class="playlist-container">
+      <h2>Your playlists</h2>
       {{#each data}}
-      <article>
+      <article class="playlist-card">
          <a href="/detail/{{this.playlist.id}}">
          <picture>
             <source media="(min-width: 768px)" srcset="{{this.playlist.largeImg}}" />
@@ -12,3 +14,4 @@
       </article>
       {{/each}}
    </section>
+</main>
