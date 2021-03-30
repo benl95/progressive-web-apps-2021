@@ -1,0 +1,33 @@
+/* Playlist */
+
+.tracks-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0 1em 0 1em;
+	min-width: 60%;
+}
+
+.horizontal-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	margin: var(--base-spacing);
+}
+
+.horizontal-container h2 {
+	font-weight: 600;
+	font-size: 16px;
+}
+
+.horizontal-container p {
+	display: block;
+	padding-top: 0.2em;
+	font-weight: 300;
+}
+
+.time {
+	padding-left: 0.3em;
+}

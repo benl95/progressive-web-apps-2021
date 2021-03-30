@@ -1,0 +1,24 @@
+/* Login */
+
+.login-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	height: 10em;
+	margin-top: 3em;
+}
+
+.login-container img {
+	width: 72px;
+	height: 72px;
+}
+
+.login-container a {
+	text-align: center;
+	width: 10em;
+	height: 2em;
+	background-color: var(--green);
+	border-radius: 30px;
+	padding: 7px;
+}
