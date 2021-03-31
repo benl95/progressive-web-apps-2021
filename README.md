@@ -22,7 +22,6 @@ Visit the live version of the app here:
 <details>
 <summary>Build scripts</summary>
 <br>
-<br>
 Inside my project I use two different build scripts. The build scripts bundle my CSS and Client-side Javascript and minifies them. The minified files will be placed in the `public` directory and used for production.
 
 ```
@@ -36,7 +35,6 @@ Inside my project I use two different build scripts. The build scripts bundle my
 
 <details>
 <summary>Dev</summary>
-<br>
 <br>
 To make the workflow in development more efficient I use the `nodemon` package. This package restarts the server when a change is made to the source code. This make all changes immediately visible, thus speeding up the development of the application.
 
@@ -52,13 +50,11 @@ To make the workflow in development more efficient I use the `nodemon` package. 
 <details>
 <summary>Manifest</summary>
 <br>
-<br>
 The goal of this project is to refactor our existing application from WAFS to a Progressive Web App. To make it possible for users to install the application to their mobile device a `manifest` file is created. This file passes information to the browsers about your PWA and how it should behave when installed to a mobile device.
 </details>
 
 <details>
 <summary>Service worker</summary>
-<br>
 <br>
 A Service worker essentially acts as a proxy server that sits between the web application, the browser and the network (when available). They are intended, among other things, to enable the creation of effective offline experiences.
 
@@ -82,7 +78,6 @@ Javascript, the login page and a offline page when the network is unavailable.
 <details>
 <summary>Lighthouse Audit Results</summary>
 <br>
-
 <img width="778" alt="Schermafbeelding 2021-03-31 om 09 57 09" src="https://user-images.githubusercontent.com/43675725/113114972-37e5c500-920c-11eb-9270-ed44a4fb230d.png">
 
 <img width="772" alt="Schermafbeelding 2021-03-31 om 09 57 00" src="https://user-images.githubusercontent.com/43675725/113115012-43d18700-920c-11eb-85b8-3abefaa675e6.png">
@@ -176,7 +171,6 @@ axios
 
 <detals>
 <summary>Response</summary>
-<br>
 <br>
 ```
 [
