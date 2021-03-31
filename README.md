@@ -22,6 +22,7 @@ Visit the live version of the app here:
 <details>
 <summary>Build scripts</summary>
 <br>
+<br>
 Inside my project I use two different build scripts. The build scripts bundle my CSS and Client-side Javascript and minifies them. The minified files will be placed in the `public` directory and used for production.
 
 ```
@@ -35,6 +36,7 @@ Inside my project I use two different build scripts. The build scripts bundle my
 
 <details>
 <summary>Dev</summary>
+<br>
 <br>
 To make the workflow in development more efficient I use the `nodemon` package. This package restarts the server when a change is made to the source code. This make all changes immediately visible, thus speeding up the development of the application.
 
@@ -50,13 +52,15 @@ To make the workflow in development more efficient I use the `nodemon` package. 
 <details>
 <summary>Manifest</summary>
 <br>
+<br>
 The goal of this project is to refactor our existing application from WAFS to a Progressive Web App. To make it possible for users to install the application to their mobile device a `manifest` file is created. This file passes information to the browsers about your PWA and how it should behave when installed to a mobile device.
 </details>
 
 <details>
 <summary>Service worker</summary>
 <br>
-A Service worker essentially acts as a proxy server that sits between the web application, the browser and the network (when available). They are intended, among other things, to enable the creation of effective offline expereiences.
+<br>
+A Service worker essentially acts as a proxy server that sits between the web application, the browser and the network (when available). They are intended, among other things, to enable the creation of effective offline experiences.
 
 The Service Worker lifecycle consists of the following events:
 
@@ -69,7 +73,7 @@ The Service Worker lifecycle consists of the following events:
 In my service worker I use the `install`, `activation` and `fetch` event
 listeners. These event listeners ensures that the application can be used
 offline. Currently I use the service worker to pre-cache my CSS, Client-Side
-Javascript, the homepage and a offline page when the network is unavailable.
+Javascript, the login page and a offline page when the network is unavailable.
 
 </details>
 
@@ -90,11 +94,11 @@ Javascript, the homepage and a offline page when the network is unavailable.
 My application fetches all the playlists of the logged in users from the Spotify API and renders this to the screen. This API call fetches a lot of images for the playlist covers which can slow down the application. 
 To optimize this I use `lazy` loading attribute for my images. To optimize the images in my web application further, I use the `picture` element of HTML. This makes it possible to render different image sizes depending on the screen width.
 
-```
+```html
 <picture>
-   <source media="(min-width: 768px)" srcset="{{this.playlist.largeImg}}"/>
-   <source media="(min-width: 320px)" srcset="{{this.playlist.smallImg}}"/>
-   <img src="{{this.playlist}}" alt="Playlist cover" loading="lazy">
+	<source media="(min-width: 768px)" srcset="{{this.playlist.largeImg}}" />
+	<source media="(min-width: 320px)" srcset="{{this.playlist.smallImg}}" />
+	<img src="{{this.playlist}}" alt="Playlist cover" loading="lazy" />
 </picture>
 ```
 
@@ -153,7 +157,7 @@ Since this application is made with Node.js I will be using the
 <details>
 <summary>Fetching data from the API</summary>
 <br>
-
+<br>
 ```js
 axios
 	.get('https://api.spotify.com/v1/me/playlists', {
@@ -168,6 +172,71 @@ axios
 	});
 ```
 
+</details>
+
+<detals>
+<summary>Response</summary>
+<br>
+<br>
+```
+[
+  {
+    collaborative: false,
+    description: '',
+    external_urls: {
+      spotify: 'https://open.spotify.com/playlist/6sK8y8rV2AUk4miRzbBrKT'
+    },
+    href: 'https://api.spotify.com/v1/playlists/6sK8y8rV2AUk4miRzbBrKT',
+    id: '6sK8y8rV2AUk4miRzbBrKT',
+    images: [ [Object], [Object], [Object] ],
+    name: 'Boolin',
+    owner: {
+      display_name: 'Ben Langenberg',
+      external_urls: [Object],
+      href: 'https://api.spotify.com/v1/users/1128046776',
+      id: '1128046776',
+      type: 'user',
+      uri: 'spotify:user:1128046776'
+    },
+    primary_color: null,
+    public: true,
+    snapshot_id: 'MTMsZDZkZjgxMDM1NGU1NGNlZGUxMTc4MzQ5MWRiYTFhNDg3NDU4N2RmNw==',
+    tracks: {
+      href: 'https://api.spotify.com/v1/playlists/6sK8y8rV2AUk4miRzbBrKT/tracks',
+      total: 12
+    },
+    type: 'playlist',
+    uri: 'spotify:playlist:6sK8y8rV2AUk4miRzbBrKT'
+  },
+  {
+    collaborative: false,
+    description: '',
+    external_urls: {
+      spotify: 'https://open.spotify.com/playlist/1zwejd656eHkvkPw8yQw0u'
+    },
+    href: 'https://api.spotify.com/v1/playlists/1zwejd656eHkvkPw8yQw0u',
+    id: '1zwejd656eHkvkPw8yQw0u',
+    images: [ [Object], [Object], [Object] ],
+    name: 'hrtbrk szn',
+    owner: {
+      display_name: 'Ben Langenberg',
+      external_urls: [Object],
+      href: 'https://api.spotify.com/v1/users/1128046776',
+      id: '1128046776',
+      type: 'user',
+      uri: 'spotify:user:1128046776'
+    },
+    primary_color: null,
+    public: true,
+    snapshot_id: 'NDIsNDk5OGU0MTljMDgzN2NmODliZGNiOTNhM2MwYTNkMWNkZjExNGVhMA==',
+    tracks: {
+      href: 'https://api.spotify.com/v1/playlists/1zwejd656eHkvkPw8yQw0u/tracks',
+      total: 39
+    },
+    type: 'playlist',
+    uri: 'spotify:playlist:1zwejd656eHkvkPw8yQw0u'
+  },
+```
 </details>
 
 ## Build
