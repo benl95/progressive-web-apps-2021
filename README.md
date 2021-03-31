@@ -50,7 +50,7 @@ To make the workflow in development more efficient I use the `nodemon` package. 
 <details>
 <summary>Manifest</summary>
 <br>
-The goal of this project is to refactor our existing application from WAFS to a Progressive Web App. To make it possible for users to install the application to their mobile device a `manifest.json` file is created. This file passes information to the browsers about your PWA and how it should behave when installed to a mobile device.
+The goal of this project is to refactor our existing application from WAFS to a Progressive Web App. To make it possible for users to install the application to their mobile device a `manifest` file is created. This file passes information to the browsers about your PWA and how it should behave when installed to a mobile device.
 </details>
 
 <details>
