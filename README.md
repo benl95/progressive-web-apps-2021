@@ -152,7 +152,7 @@ Since this application is made with Node.js I will be using the
 <details>
 <summary>Fetching data from the API</summary>
 <br>
-<br>
+
 ```js
 axios
 	.get('https://api.spotify.com/v1/me/playlists', {
@@ -169,10 +169,12 @@ axios
 
 </details>
 
-<detals>
+<details>
 <summary>Response</summary>
 <br>
-```
+
+```js
+
 [
   {
     collaborative: false,
@@ -230,7 +232,9 @@ axios
     type: 'playlist',
     uri: 'spotify:playlist:1zwejd656eHkvkPw8yQw0u'
   },
+
 ```
+
 </details>
 
 ## Build
