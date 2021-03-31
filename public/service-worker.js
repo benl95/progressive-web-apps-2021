@@ -17,7 +17,7 @@ self.addEventListener('install', e => {
 			.open(cacheName)
 			.then(cache => {
 				console.log('Service Worker: Caching Files');
-				cache.addAll(cacheAssets);
+				return cache.addAll(cacheAssets);
 			})
 			.then(() => self.skipWaiting())
 			.catch(err => console.log(err))
@@ -44,5 +44,16 @@ self.addEventListener('activate', e => {
 // Call Fetch event
 self.addEventListener('fetch', e => {
 	console.log('Service Worker: Fetching');
-	e.respondWith(fetch(e.request).catch(() => caches.match('/offline')));
+	e.respondWith(
+		caches
+			.match(e.request)
+			.then(response => {
+				if (response) {
+					return response;
+				}
+
+				return fetch(e.request);
+			})
+			.catch(() => caches.match('/offline'))
+	);
 });
